@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+    <h2>Hello {{ session['user'].name }}</h2>
+    <button id='create-term-modal' class='button is-primary'>Create term</button>
+
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <h3 style='text-align: center;'>Create a term</h3>
+          <form name='create-term-form' id='create-term-form' class='is-flex is-flex-direction-column is-justify-content-center card-content'>
+            
+          </form>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+
+    <form name='search-form' id='search-form' class='is-flex is-flex-direction-column is-justify-content-center card-content'>
+        <h1 class='title' style='text-align: center;'>Find tech terms</h1>
+        <div class='field'>
+            <input type='text' id='term' name='term' class='input' placeholder='E.g Operating System' required>
+        </div>
+
+        <span id='term-error' class='error'></span>
+
+        <input type='submit' value='Search' class='button is-primary' />
+    </form>
+
+    <div class='term-def'>
+
+    </div>
+
+{% endblock %}

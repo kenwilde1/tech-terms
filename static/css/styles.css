@@ -1,0 +1,10 @@
+.container {
+  height: 100vh;
+}
+
+.modal-content {
+  border: 1px red;
+  width: 35vw;
+  background: white;
+  height: 50vh;
+}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='container is-fluid is-flex is-flex-direction-column is-justify-content-center'>
+
+        <div class='columns is-flex is-justify-content-center'>
+            <div class='column is-half card'>
+                <form name='login-form' id='login-form' class='is-flex is-flex-direction-column is-justify-content-center card-content'>
+                    <h1 class='title' style='text-align: center;'>Login</h1>
+                    <div class='field'>
+                        <label for='email'>Email</label>
+                        <br />
+                        <input type='text' id='email' name='email' class='input' required>
+                    </div>
+                    
+                    <div class='field'>
+                        <label for='password'>Password</label>
+                        <br />
+                        <input type='password' id='password' name='password' class='input' required>
+                    </div>
+
+                    <span id='login-error' class='error'></span>
+
+                    <input type='submit' value='Login' class='button is-primary' />
+                </form>
+                <p>Don't have an account? Register <a href='/register'>here.</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
