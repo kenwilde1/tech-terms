@@ -5,6 +5,7 @@
 
     <h2>Hello {{ session['user'].name }}</h2>
     <button id='create-term-modal' class='button is-primary'>Create term</button>
+    <a id='my-terms' class='button is-primary' href='/my-terms'>My Terms</a>
 
     <div class="modal">
         <div class="modal-background"></div>
@@ -27,17 +28,20 @@
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
       </div>
-
-    <form name='search-form' id='search-form' class='is-flex is-flex-direction-column is-justify-content-center card-content'>
+    <div class='columns is-flex is-justify-content-center'>
+      <div class='column is-half'>
+        <form name='search-form' id='search-form' class='is-flex is-flex-direction-column is-justify-content-center card-content'>
         <h1 class='title' style='text-align: center;'>Find tech terms</h1>
         <div class='field'>
-            <input type='text' id='term' name='term' class='input' placeholder='E.g Operating System' required>
+            <input type='text' id='term' name='term' class='input' placeholder='e.g OS' required>
         </div>
 
         <span id='term-error' class='error'></span>
 
         <input type='submit' value='Search' class='button is-primary' />
     </form>
+    </div>
+    </div>
 
     <div class='term-def'>
 

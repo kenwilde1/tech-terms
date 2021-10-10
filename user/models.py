@@ -1,4 +1,4 @@
-from flask import Flask, json, jsonify, request, session, redirect
+from flask import Flask, json, jsonify, request, session, redirect, render_template
 from passlib.hash import pbkdf2_sha256
 from db import user_collection, term_collection
 import uuid
@@ -41,16 +41,22 @@ class User:
         session.clear()
         return redirect('/')
 
+    def get_my_terms(self):
+        response = term_collection.find(
+            {"created_by": {"$eq": session['user']['email']}}, {"_id": 0, "created_by": 0})
+        # print(loads(dumps(response)))
+        return loads(dumps(response))
+
 
 class Term:
-    def get_term(self, term):
+    def get(self, term):
         response = term_collection.find_one({"term": term})
         if response:
             return jsonify(response['definition']), 200
         else:
             return jsonify({"error": "Could not find that term, please try again"}), 404
 
-    def create_term(self):
+    def create(self):
         payload = {
             "created_by": session['user']['email'],
             "term": request.form.get('term-name'),
@@ -61,3 +67,12 @@ class Term:
         else:
             term_collection.insert_one(payload)
             return jsonify('Term created'), 200
+
+    def edit(self, term):
+        print(term)
+        term_edit = term_collection.find_one({"term": term})
+        print(term_edit)
+        term_edit['definition'] = request.form.get('term-definition')
+        print(request.form.get('term-definition'))
+        term_collection.save(term_edit)
+        return jsonify('saved term'), 200

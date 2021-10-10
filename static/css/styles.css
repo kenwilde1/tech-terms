@@ -7,3 +7,19 @@
   width: 35vw;
   background: white;
 }
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.list-item button {
+  cursor: pointer;
+}

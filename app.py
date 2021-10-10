@@ -56,10 +56,24 @@ def dashboard():
 @app.route('/search/<term>')
 @login_required
 def search(term):
-    return Term().get_term(term)
+    return Term().get(term)
 
 
 @app.route('/create', methods=['POST'])
 @login_required
 def create():
-    return Term().create_term()
+    return Term().create()
+
+
+@app.route('/my-terms')
+@login_required
+def my_terms():
+    data = User().get_my_terms()
+    print(data)
+    return render_template('user_terms.html', data=data)
+
+
+@app.route('/edit/<term>', methods=['POST'])
+@login_required
+def edit(term):
+    return Term().edit(term)
