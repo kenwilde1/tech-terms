@@ -6,7 +6,6 @@ from bson.json_util import dumps, loads
 
 
 class User:
-
     def initialize_session(self, user):
         del user['password']
         session['logged_in'] = True
@@ -45,11 +44,20 @@ class User:
 
 class Term:
     def get_term(self, term):
-        response_obj = term_collection.find({}, {term: True})
-        response_value = dumps(response_obj)
-        if len(loads(response_value)[0]) > 1:
-            value = loads(response_value)[0][term]
-            print(value)
-            return jsonify(value), 200
+        response = term_collection.find_one({"term": term})
+        if response:
+            return jsonify(response['definition']), 200
         else:
-            return jsonify({"error": "Term not found, please try again"}), 404
+            return jsonify({"error": "Could not find that term, please try again"}), 404
+
+    def create_term(self):
+        payload = {
+            "created_by": session['user']['email'],
+            "term": request.form.get('term-name'),
+            "definition": request.form.get('term-definition')
+        }
+        if term_collection.find_one({"term": request.form.get('term-name')}):
+            return jsonify({"error": "term already has a definition"}), 400
+        else:
+            term_collection.insert_one(payload)
+            return jsonify('Term created'), 200

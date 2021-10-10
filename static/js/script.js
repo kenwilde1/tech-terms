@@ -61,8 +61,27 @@ $("form[name=search-form").submit(function(e) {
   });
 });
 
+$("form[name=create-term-form").submit(function(e) {
+  e.preventDefault();
+  var $form = $(this);
+  var $error = $form.find(".error");
+  var data = $form.serialize();
+
+  $.ajax({
+    url: "/create",
+    type: "POST",
+    data: data,
+    dataType: "json",
+    success: (resp) => {
+        console.log(resp)
+    },
+    error: (resp) => {
+        $error.text(resp.responseJSON.error)
+    }
+  });
+});
+
 $("#create-term-modal").click(function(e) {
-  console.log('hey');
   $('body').find('.modal').addClass('is-active');
 
   $(".modal-close").click(function(e) {
@@ -72,4 +91,8 @@ $("#create-term-modal").click(function(e) {
   $(".modal-background").click(function(e) {
     $('body').find('.modal').removeClass('is-active');
   });
+
+  // $(".create-button").click(function(e) {
+  //   $('body').find('.modal').removeClass('is-active');
+  // });
 });

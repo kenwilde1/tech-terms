@@ -57,3 +57,9 @@ def dashboard():
 @login_required
 def search(term):
     return Term().get_term(term)
+
+
+@app.route('/create', methods=['POST'])
+@login_required
+def create():
+    return Term().create_term()
