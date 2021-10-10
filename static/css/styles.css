@@ -23,3 +23,18 @@ ul {
 .list-item button {
   cursor: pointer;
 }
+
+.delete-content {
+  padding: 10px;
+}
+
+.delete-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 10px;
+}
+
+.delete-target {
+  font-weight: 600;
+}

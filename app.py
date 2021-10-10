@@ -77,3 +77,9 @@ def my_terms():
 @login_required
 def edit(term):
     return Term().edit(term)
+
+
+@app.route('/delete/<term>', methods=["POST"])
+@login_required
+def delete(term):
+    return Term().delete(term)

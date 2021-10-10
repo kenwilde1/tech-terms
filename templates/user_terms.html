@@ -3,7 +3,7 @@
 {% block content %}
 <a href='/dashboard/' class='button is-primary'>Home</a>
 
-<div class="modal">
+<div class="modal edit-modal">
     <div class="modal-background"></div>
     <div class="modal-content">
       <form name='edit-term-form' id='edit-term-form' class='is-flex is-flex-direction-column is-justify-content-center card-content'>
@@ -23,6 +23,19 @@
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
 
+  <div class="modal delete-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content delete-content">
+        <h2 class='subtitle'>Are you sure you want to delete the following term?</h2>
+        <p class='delete-target' style='text-align: center;'></p>
+        <span class='delete-buttons'>
+            <button class='button is-primary final-delete'>Yes</button>
+            <button class='button is-danger cancel-delete'>No</button>
+        </span>
+    </div>
+    <button class="modal-close is-large delete-close" aria-label="close"></button>
+  </div>
+
 <div class='container is-fluid is-flex is-flex-direction-column is-justify-content-center'>
     <div class='columns is-flex is-justify-content-center'>
         <div class='column is-half card'>
@@ -30,8 +43,11 @@
             <ul>
                 {% for item in data %}
                     <li class='list-item'>
-                        {{item.term}}: {{item.definition}}
-                        <button id="{{item.term}}" class="button is-primary edit"><i class="far fa-edit"></i></button>
+                        <span>{{item.term}}: {{item.definition}}</span>
+                        <span id="{{item.term}}">
+                            <button class="button is-primary edit-term"><i class="far fa-edit"></i></button>
+                            <button class="button is-danger delete-term"><i class="far fa-trash-alt"></i></button>
+                        </span>
                     </li>
                 {% endfor %}
             </ul>

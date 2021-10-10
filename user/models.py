@@ -44,7 +44,6 @@ class User:
     def get_my_terms(self):
         response = term_collection.find(
             {"created_by": {"$eq": session['user']['email']}}, {"_id": 0, "created_by": 0})
-        # print(loads(dumps(response)))
         return loads(dumps(response))
 
 
@@ -69,10 +68,15 @@ class Term:
             return jsonify('Term created'), 200
 
     def edit(self, term):
-        print(term)
         term_edit = term_collection.find_one({"term": term})
-        print(term_edit)
         term_edit['definition'] = request.form.get('term-definition')
-        print(request.form.get('term-definition'))
         term_collection.save(term_edit)
         return jsonify('saved term'), 200
+
+    def delete(self, term):
+        term_to_delete = term_collection.find_one({"term": term})
+        if term_to_delete['created_by'] == session['user']['email']:
+            term_collection.delete_one({"term": term})
+            return jsonify("Term deleted succesfully"), 200
+        else:
+            return jsonify({"error": "Request made not from term owner"}), 403
