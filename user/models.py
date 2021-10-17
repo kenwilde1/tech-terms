@@ -51,7 +51,7 @@ class Term:
     def get(self, term):
         response = term_collection.find_one({"term": term})
         if response:
-            return jsonify(response['definition']), 200
+            return jsonify([response['definition'], term]), 200
         else:
             return jsonify({"error": "Could not find that term, please try again"}), 404
 
@@ -80,3 +80,7 @@ class Term:
             return jsonify("Term deleted succesfully"), 200
         else:
             return jsonify({"error": "Request made not from term owner"}), 403
+
+    def get_all(self):
+        response = term_collection.find({}, {"_id": 0})
+        return loads(dumps(response))

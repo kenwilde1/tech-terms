@@ -1,50 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Dashboard</h1>
-
-    <h2>Hello {{ session['user'].name }}</h2>
-    <button id='create-term-modal' class='button is-primary'>Create term</button>
-    <a id='my-terms' class='button is-primary' href='/my-terms'>My Terms</a>
-
-    <div class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-          <form name='create-term-form' id='create-term-form' class='is-flex is-flex-direction-column is-justify-content-center card-content'>
-            <h2 class='title' style='text-align: center;'>Create a term</h2>
-            <div class='field'>
-                <label for='term-name'>Name</label>
-                <input type='text' id='term-name' name='term-name' class='input' required>
-            </div>
-            <div class='field'>
-                <label for='term-definition'>Definition</label>
-                <input type='text' id='term-definition' name='term-definition' class='input' required>
-            </div>
-
-            <span id='term-create-error' class='error'></span>
-
-            <input type='submit' value='Create' class='button is-primary create-button' />
-          </form>
-        </div>
-        <button class="modal-close is-large" aria-label="close"></button>
-      </div>
     <div class='columns is-flex is-justify-content-center'>
       <div class='column is-half'>
         <form name='search-form' id='search-form' class='is-flex is-flex-direction-column is-justify-content-center card-content'>
-        <h1 class='title' style='text-align: center;'>Find tech terms</h1>
-        <div class='field'>
-            <input type='text' id='term' name='term' class='input' placeholder='e.g OS' required>
+          <h1 class='title' style='text-align: center;'>Find tech terms</h1>
+          <div class='field'>
+              <input type='text' id='term' name='term' class='input' placeholder='e.g OS' required>
+          </div>
+
+          <span id='term-error' class='error'></span>
+
+          <input type='submit' value='Search' class='button is-primary' />
+        </form>
+      </div>
+    </div>
+      <div class='columns is-flex is-justify-content-center'>
+          <div class='column is-half mt-5'>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Term</th>
+                      <th>Definition</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for term in terms %}
+                    <tr>
+                      <td>{{ term.term }}</td>
+                      <td>{{ term.definition }}</td>
+                      <td><a id="{{ term.term }}, {{ term.definition }}" class="view-term-large"><i class="fas fa-expand has-text-primary-dark"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class=''>
+                {{ pagination.links }}
+              </div>
+            </div>
+      </div>
+
+      <div class="modal large-term-view">
+        <div class="modal-background view-background"></div>
+        <div class="modal-content view-content">
         </div>
-
-        <span id='term-error' class='error'></span>
-
-        <input type='submit' value='Search' class='button is-primary' />
-    </form>
-    </div>
-    </div>
-
-    <div class='term-def'>
-
-    </div>
+        <button class="modal-close is-large view-close" aria-label="close"></button>
+      </div>
+  </div>
 
 {% endblock %}

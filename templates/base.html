@@ -10,6 +10,54 @@
     <title>Tech Terms</title>
 </head>
 <body>
+    <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/dashboard/">
+            <h1 class='title has-text-white'>Tech Terms</h1>
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+        <div class='navbar-end has-text-primary-dark'>
+            <div class='navbar-item'>
+                <a href='/dashboard/' class='button is-white'>Home</a>
+            </div>
+            <div class='navbar-item'>
+                <button id='create-term-modal' class='button is-white'>Create term</button>
+            </div>
+            <div class='navbar-item'>
+                <a id='my-terms' class='button is-white' href='/my-terms'>My Terms</a>
+            </div>
+            <div class='navbar-item'>
+                <a id='my-terms' class='button is-white' href='/user/logout'>Logout</a>
+            </div>
+        </div>
+      </nav>
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <form name='create-term-form' id='create-term-form' class='is-flex is-flex-direction-column is-justify-content-center card-content'>
+            <h2 class='title' style='text-align: center;'>Create a term</h2>
+            <div class='field'>
+                <label for='term-name'>Name</label>
+                <input type='text' id='term-name' name='term-name' class='input' required>
+            </div>
+            <div class='field'>
+                <label for='term-definition'>Definition</label>
+                <input type='text' id='term-definition' name='term-definition' maxlength="25" class='input' required>
+            </div>
+
+            <span id='term-create-error' class='error'></span>
+
+            <input type='submit' value='Create' class='button is-primary create-button' />
+          </form>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
     {% block content %}
     {% endblock %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

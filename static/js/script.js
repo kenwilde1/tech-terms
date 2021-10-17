@@ -43,7 +43,23 @@ $("form[name=search-form").submit(function(e) {
   var $form = $(this);
   var $term = $form.find('#term')
   var $error = $form.find(".error");
-  var $termDiv = $('body').find('.term-def');
+  var $resultsModal = $('body').find('.large-term-view');
+  $resultsModal.find('.modal-content').empty()
+
+  var $resultsHeader = $('<h1 class="title"></h1>')
+  var $resultsContent = $('<p></p>')
+  var $learnMore = $('<a></a>');
+
+  $(".large-term-view").click(function(e) {
+  
+    $(".view-close").click(function(e) {
+      $resultsModal.removeClass('is-active');
+    });
+  
+    $(".view-background").click(function(e) {
+      $resultsModal.removeClass('is-active');
+    });
+  });
 
 
   $.ajax({
@@ -51,7 +67,22 @@ $("form[name=search-form").submit(function(e) {
     type: "GET",
     dataType: "json",
     success: (resp) => {
-        $termDiv.text(resp)
+        $resultsModal.addClass('is-active');
+
+        $resultsHeader.text(resp[1]);
+        $resultsContent.text(resp[0]);
+        if (resp[0].includes(' ')) {
+          const learnMoreString = resp[0].replace(' ', '+')
+          $learnMore.attr("href", `https://www.google.com/search?q=${learnMoreString}`)
+        } else {
+          $learnMore.attr("href", `https://www.google.com/search?q=${resp[0]}`)
+        }
+        $learnMore.text('Learn more')
+        $learnMore.attr('target','_blank');
+
+        $resultsModal.find('.modal-content').append($resultsHeader);
+        $resultsModal.find('.modal-content').append($resultsContent);
+        $resultsModal.find('.modal-content').append($learnMore);
     },
     error: (resp) => {
         $error.text(resp.responseJSON.error)
@@ -90,10 +121,6 @@ $("#create-term-modal").click(function(e) {
   $(".modal-background").click(function(e) {
     $('body').find('.modal').removeClass('is-active');
   });
-
-  // $(".create-button").click(function(e) {
-  //   $('body').find('.modal').removeClass('is-active');
-  // });
 });
 
 $(".edit-term").click(function(e) {
@@ -172,3 +199,40 @@ $(".delete-term").click(function(e) {
     location.reload()
   });
 });
+
+$('.view-term-large').click((e) => {
+  const id = e.currentTarget.id;
+  const content = id.split(',');
+
+
+  $('body').find('.modal-content').empty();
+
+  const modal = $('body').find('.large-term-view');
+  modal.addClass('is-active');
+
+  $(".modal-close").click(function(e) {
+    modal.removeClass('is-active');
+  });
+
+  $(".modal-background").click(function(e) {
+    modal.removeClass('is-active');
+  });
+
+  var $resultsHeader = $(`<h1 class="title">${content[0]}</h1>`)
+  var $resultsContent = $(`<p>${content[1]}</p>`)
+  var $learnMore = $('<a></a>');
+
+  if (content[1].includes(' ')) {
+    const learnMoreString = content[1].replace(' ', '+')
+    $learnMore.attr("href", `https://www.google.com/search?q=${learnMoreString}`)
+  } else {
+    $learnMore.attr("href", `https://www.google.com/search?q=${content[1]}`)
+  }
+  $learnMore.text('Learn more')
+  $learnMore.attr('target','_blank');
+
+  $('body').find('.modal-content').append($resultsHeader);
+  $('body').find('.modal-content').append($resultsContent);
+  $('body').find('.modal-content').append($learnMore);
+
+})

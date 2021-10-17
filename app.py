@@ -1,14 +1,14 @@
 from flask import Flask, render_template, url_for, redirect, request, session
 from user.models import User, Term
 from functools import wraps
-import pymongo
+from flask_paginate import Pagination, get_page_args
 
 import db
 
 app = Flask(__name__)
 app.secret_key = '1a2b3c4d5e6f7g'
 
-# Decorators
+PER_PAGE = 5
 
 
 def login_required(f):
@@ -20,6 +20,20 @@ def login_required(f):
             return redirect('/')
 
     return wrap
+
+
+def paginate(terms):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    offset = page * PER_PAGE - PER_PAGE
+    return terms[offset: offset + PER_PAGE]
+
+
+def pagination_args(terms):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    total = len(terms)
+    return Pagination(page=page, per_page=PER_PAGE, total=total, css_framework='bulma')
 
 
 @app.route('/')
@@ -50,7 +64,12 @@ def logout():
 @app.route('/dashboard/')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    terms = Term().get_all()
+
+    terms_paginate = paginate(terms)
+    pagination = pagination_args(terms)
+
+    return render_template('dashboard.html', terms=terms_paginate, pagination=pagination)
 
 
 @app.route('/search/<term>')
