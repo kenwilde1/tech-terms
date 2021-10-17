@@ -95,7 +95,6 @@ $("form[name=search-form").submit(function(e) {
 });
 
 $("form[name=create-term-form").submit(function(e) {
-  e.preventDefault();
   var $form = $(this);
   var $error = $form.find(".error");
   var data = $form.serialize();
