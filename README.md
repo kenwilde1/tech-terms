@@ -6,11 +6,13 @@
 
 ---
 
-<h1 style="text-align: center;">Weather Now</h1>
+<h1 style="text-align: center;">Tech Terms</h1>
 
 ---
 
 ## What is Tech Terms?
+
+Tech Terms is a CRUD application that allows users to contribute term definitions to a repository. All terms can then be searched, edited or deleted. When a user comes across a tech term they don't understand, they can search the acronym on Tech Terms and get a definition. Tech Terms also provides other resources to learn more about the term.
 
 [Back to top](#table-of-contents)
 
