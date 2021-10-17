@@ -1,53 +1,55 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class='columns is-flex is-justify-content-center'>
-      <div class='column is-half'>
-        <form name='search-form' id='search-form' class='is-flex is-flex-direction-column is-justify-content-center card-content'>
-          <h1 class='title' style='text-align: center;'>Find tech terms</h1>
-          <div class='field'>
-              <input type='text' id='term' name='term' class='input' placeholder='e.g OS' required>
-          </div>
-
-          <span id='term-error' class='error'></span>
-
-          <input type='submit' value='Search' class='button is-primary' />
-        </form>
-      </div>
-    </div>
-      <div class='columns is-flex is-justify-content-center'>
-          <div class='column is-half mt-5'>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Term</th>
-                      <th>Definition</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for term in terms %}
-                    <tr>
-                      <td>{{ term.term }}</td>
-                      <td>{{ term.definition }}</td>
-                      <td><a id="{{ term.term }}, {{ term.definition }}" class="view-term-large"><i class="fas fa-expand has-text-primary-dark"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-              <div class=''>
-                {{ pagination.links }}
-              </div>
-            </div>
+<div class='columns is-flex is-justify-content-center'>
+  <div class='column is-half'>
+    <form name='search-form' id='search-form'
+      class='is-flex is-flex-direction-column is-justify-content-center card-content'>
+      <h1 class='title' style='text-align: center;'>Find tech terms</h1>
+      <div class='field'>
+        <input type='text' id='term' name='term' class='input' placeholder='e.g OS' required>
       </div>
 
-      <div class="modal large-term-view">
-        <div class="modal-background view-background"></div>
-        <div class="modal-content view-content">
-        </div>
-        <button class="modal-close is-large view-close" aria-label="close"></button>
-      </div>
+      <span id='term-error' class='error'></span>
+
+      <input type='submit' value='Search' class='button is-primary' />
+    </form>
   </div>
+</div>
+<div class='columns is-flex is-justify-content-center'>
+  <div class='column is-half mt-5'>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for term in terms %}
+          <tr>
+            <td>{{ term.term }}</td>
+            <td>{{ term.definition }}</td>
+            <td><a id="{{ term.term }}, {{ term.definition }}" class="view-term-large"><i
+                  class="fas fa-expand has-text-primary-dark"></i></a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class='pagination-controls'>
+      {{ pagination.links }}
+    </div>
+  </div>
+</div>
+
+<div class="modal large-term-view">
+  <div class="modal-background view-background"></div>
+  <div class="modal-content view-content">
+  </div>
+  <button class="modal-close is-large view-close" aria-label="close"></button>
+</div>
+</div>
 
 {% endblock %}

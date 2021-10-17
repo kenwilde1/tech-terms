@@ -1,16 +1,62 @@
+/* Misc Styles */
 .container {
   height: 100vh;
   width: 100vw;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
 
+.error {
+  text-align: center;
+  margin-bottom: 10px;
+  color: red;
+}
+
+.is-current {
+  background: hsl(141, 71%, 48%) !important;
+  border: none;
+}
+
+/* Navbar */
+.navbar {
+  height: 10vh;
+}
+
+/* Modals */
 .modal-content {
   width: 35vw;
   background: white;
+  border-radius: 10px;
+  padding: 20px;
 }
+
+.view-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Pagination */
+.pagination-list {
+  display: flex;
+  flex-direction: row !important;
+  margin-top: 20px;
+}
+
+table {
+  height: 50vh;
+  width: 100%;
+}
+
+thead {
+  border-bottom: 2px solid lightgray;
+}
+
+/* My Terms */
 
 ul {
   display: flex;
@@ -25,12 +71,12 @@ ul {
   border-bottom: 1px solid lightgray;
 }
 
-.list-item button {
-  cursor: pointer;
+.list-item:last-child {
+  border: none;
 }
 
-.delete-content {
-  padding: 10px;
+.list-item button {
+  cursor: pointer;
 }
 
 .delete-buttons {
@@ -44,39 +90,19 @@ ul {
   font-weight: 600;
 }
 
-.navbar {
-  height: 10vh;
+/* Responsive Styles */
+@media only screen and (max-width: 770px) {
+  .pagination-previous,
+  .pagination-next {
+    display: none;
+  }
+  .modal-content {
+    font-size: 14px;
+  }
 }
 
-.error {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.pagination-list {
-  display: flex;
-  flex-direction: row !important;
-  margin-top: 20px;
-}
-
-.is-current {
-  background: hsl(141, 71%, 48%) !important;
-  border: none;
-}
-
-table {
-  height: 50vh;
-  width: 100%;
-}
-
-thead {
-  border-bottom: 2px solid lightgray;
-}
-
-.view-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 20px;
+@media only screen and (max-width: 1024px) {
+  .navbar {
+    height: 8vh;
+  }
 }

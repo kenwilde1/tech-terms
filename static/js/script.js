@@ -29,7 +29,7 @@ $("form[name=login-form").submit(function(e) {
       type: "POST",
       data: data,
       dataType: "json",
-      success: (resp) => {
+      success: () => {
           window.location.href = '/dashboard/'
       },
       error: (resp) => {
@@ -43,6 +43,8 @@ $("form[name=search-form").submit(function(e) {
   var $form = $(this);
   var $term = $form.find('#term')
   var $error = $form.find(".error");
+  $error.text('');
+
   var $resultsModal = $('body').find('.large-term-view');
   $resultsModal.find('.modal-content').empty()
 
@@ -71,6 +73,7 @@ $("form[name=search-form").submit(function(e) {
 
         $resultsHeader.text(resp[1]);
         $resultsContent.text(resp[0]);
+
         if (resp[0].includes(' ')) {
           const learnMoreString = resp[0].replace(' ', '+')
           $learnMore.attr("href", `https://www.google.com/search?q=${learnMoreString}`)
@@ -103,7 +106,7 @@ $("form[name=create-term-form").submit(function(e) {
     data: data,
     dataType: "json",
     success: (resp) => {
-        console.log(resp)
+        $('body').find('.create').toggleClass('is-active');
     },
     error: (resp) => {
         $error.text(resp.responseJSON.error)
@@ -112,14 +115,14 @@ $("form[name=create-term-form").submit(function(e) {
 });
 
 $("#create-term-modal").click(function(e) {
-  $('body').find('.modal').addClass('is-active');
+  $('body').find('.create').addClass('is-active');
 
   $(".modal-close").click(function(e) {
-    $('body').find('.modal').removeClass('is-active');
+    $('body').find('.create').removeClass('is-active');
   });
 
   $(".modal-background").click(function(e) {
-    $('body').find('.modal').removeClass('is-active');
+    $('body').find('.create').removeClass('is-active');
   });
 });
 
@@ -234,5 +237,9 @@ $('.view-term-large').click((e) => {
   $('body').find('.modal-content').append($resultsHeader);
   $('body').find('.modal-content').append($resultsContent);
   $('body').find('.modal-content').append($learnMore);
+});
 
+$('.navbar-burger').click(() => {
+  $('body').find('.navbar-burger').toggleClass('is-active');
+  $('body').find('.navbar-menu').toggleClass('is-active');
 })
