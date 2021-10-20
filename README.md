@@ -22,8 +22,8 @@ Tech Terms is a CRUD application that allows users to contribute term definition
 
 - _As a User_, I want to be register an account and for that data to persist.
   <br>
-  - _As a User_, I want to be login with details I used to register.
-    <br>
+- _As a User_, I want to be login with details I used to register.
+  <br>
 - _As a User_, I want to be search for tech terms and retreive their definitions.
   <br>
 - _As a User_, I want to be able to create a definition for term.

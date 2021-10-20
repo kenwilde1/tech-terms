@@ -1,3 +1,4 @@
+// Handle User registration
 $("form[name=register-form").submit(function(e) {
     e.preventDefault();
     var $form = $(this);
@@ -18,6 +19,7 @@ $("form[name=register-form").submit(function(e) {
     });
   });
 
+// Handle User login
 $("form[name=login-form").submit(function(e) {
     e.preventDefault();
     var $form = $(this);
@@ -38,6 +40,7 @@ $("form[name=login-form").submit(function(e) {
     });
 });
 
+// Handle term search by User
 $("form[name=search-form").submit(function(e) {
   e.preventDefault();
   var $form = $(this);
@@ -62,7 +65,6 @@ $("form[name=search-form").submit(function(e) {
       $resultsModal.removeClass('is-active');
     });
   });
-
 
   $.ajax({
     url: `/search/${$term.val()}`,
@@ -94,6 +96,7 @@ $("form[name=search-form").submit(function(e) {
   });
 });
 
+// Handle creating a term
 $("form[name=create-term-form").submit(function(e) {
   var $form = $(this);
   var $error = $form.find(".error");
@@ -164,6 +167,7 @@ $(".edit-term").click(function(e) {
   });
 });
 
+// Handle deleting a term
 $(".delete-term").click(function(e) {
   const termToDelete = e.currentTarget.parentElement.id;
   const modal = $('body').find('.delete-modal');
@@ -202,6 +206,7 @@ $(".delete-term").click(function(e) {
   });
 });
 
+// Handle expanding a term definition
 $('.view-term-large').click((e) => {
   const id = e.currentTarget.id;
   const content = id.split(',');
@@ -238,6 +243,7 @@ $('.view-term-large').click((e) => {
   $('body').find('.modal-content').append($learnMore);
 });
 
+// Add some logic to mobile nav
 $('.navbar-burger').click(() => {
   $('body').find('.navbar-burger').toggleClass('is-active');
   $('body').find('.navbar-menu').toggleClass('is-active');
