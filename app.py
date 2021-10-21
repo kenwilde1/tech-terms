@@ -10,6 +10,11 @@ app.secret_key = '1a2b3c4d5e6f7g'
 
 PER_PAGE = 5
 
+"""
+Luke Peter's Login and Register course helped in building the logic used in this app.
+CREDIT: https://www.youtube.com/watch?v=w1STSSumoVk&t=2s
+"""
+
 
 def login_required(f):
     """
