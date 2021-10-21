@@ -197,7 +197,7 @@ For both modals, all fields are required, like above, to submit the form. Moreov
 
 - The pagination controls for the terms from the library `flask_paginate`, did not have responsive styling. I discovered you could pass a parameter to the Pagination class called css_framework. I was able to use `css_framework=bulma` in order to add styling. I also added custom styling in order for the experience to change depening on whether the User was on desktop or mobile.
 
-- On the my terms page, if a User created a new term, it was not updating the table dynamically. The user would have to refresh. This also occurred when deleting a term (it would still appear in the table until the User refreshed). This was due to having a `e.preventDefault()` on the form submission. Removing this caused a refresh and the terms could be dynamically Edited / Deleted.
+- On the my terms page, if a User created a new term, it was not updating the table dynamically. The user would have to refresh. This also occurred when deleting a term (it would still appear in the table until the User refreshed). This was due to having a `e.preventDefault()` on the form submission. Removing this caused a refresh and the terms could be dynamically Edited / Deleted. This is also a known bug now on the deployed Heroku site. When running a local version, it does refresh but on heroku it does not. This would be a future fix if it were not for the project deadline.
 
 <br />
 
