@@ -4,7 +4,7 @@
 
 ## Table of Contents:
 
-- [What is Tech Terms??](#what-is-tech-terms?)
+- [What is Tech Terms?](#what-is-tech-terms?)
 - [User Experience](#user-experience)
   - [User Stories](#user-stories)
   - [Design](#design)
@@ -80,7 +80,7 @@ Bulma was used as the CSS framework. Due to this, the main colour scheme followe
 - Controls: hsl(141, 53%, 53%)
 - Important: hsl(348, 100%, 61%)
 
-##### 3. Favicon
+##### Favicon
 
 The following favicon was made using [formito](https://formito.com/tools/favicon).
 
@@ -94,7 +94,7 @@ The Wireframes were created for the following resolutions:
 - Tablet (768 x 1024)
 - Mobile (360 x 720)
 
-They were created using Figma.
+They were created using Figma. They can be viewed here [Wireframes.pdf](https://github.com/kenwilde1/tech-terms/blob/main/assets/wireframes/wireframes.pdf).
 
 <a href="https://github.com/kenwilde1/tech-terms/tree/main/assets/wireframes/wireframes.pdf">
 
