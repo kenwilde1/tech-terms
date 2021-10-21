@@ -24,7 +24,7 @@
 
 All html - `base.html`, `dashboard.html`, `index.html`, `register.html` and `user_terms.html` - was checked using the HTML Validator on [W3C](https://validator.w3.org/).
 
-<img src="./assets/images/html-validation.png" alt="html validation">
+<img src="./assets/images/html_validation.png" alt="html validation">
 
 The HTML was checked using the W3C validator, it was able to catch duplicate html id attributes and unnecessary roles. There were some errors due to Jinja2 syntax but those were ignored.
 
@@ -32,7 +32,7 @@ The HTML was checked using the W3C validator, it was able to catch duplicate htm
 
 The Custom CSS `style.css` was validated using [Jigsaw](https://jigsaw.w3.org/css-validator/validator) and had no errors or warnings:
 
-<img src="./assets/images/css-validation.png" alt="css validation">
+<img src="./assets/images/css_validation.png" alt="css validation">
 
 ### JSHint
 

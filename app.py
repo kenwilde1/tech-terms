@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, session
+from flask import Flask, render_template, redirect, session, url_for
 from user.models import User, Term
 from functools import wraps
 from flask_paginate import Pagination, get_page_args
